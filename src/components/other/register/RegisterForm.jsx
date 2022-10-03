@@ -16,11 +16,11 @@ export default function RegisterForm() {
     </div>
     <div class="mb-3">
       <label for="email" class="form-label m-0">Correo electrónico</label>
-      <input type="text" id="email" class="form-control form-control-sm"></input>
+      <input type="text" id="email" class="form-control form-control-sm" autoComplete="off"></input>
     </div>
     <div class="mb-3">
       <label for="password" class="form-label m-0">Contraseña</label>
-      <input type="password" id="password" class="form-control form-control-sm"></input>
+      <input type="password" id="password" class="form-control form-control-sm" autoComplete="new-password"></input>
     </div>
     <div class="mb-3">
       <label for="address" class="form-label m-0">Ciudad</label>
