@@ -3,6 +3,10 @@
 @import "../node_modules/bootstrap/scss/variables";
 @import "../node_modules/bootstrap/scss/mixins";
 
+* {
+  font-family: "Gilroy-Regular";
+}
+
 $primary: #F07E8C;
 // $secondary: green;
 // $my-color: red;

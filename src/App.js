@@ -1,5 +1,6 @@
 // import './App.css';
 import './App.scss';
+// import './fonts/Gilroy-Regular.ttf';
 import Home from './components/pages/home/Home';
 import Register from './components/pages/register/Register';
 
