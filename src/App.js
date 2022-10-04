@@ -1,4 +1,5 @@
 // import './App.css';
+import React from 'react';
 import './App.scss';
 // import './fonts/Gilroy-Regular.ttf';
 import Home from './components/pages/home/Home';
@@ -9,23 +10,16 @@ import Header from './components/other/header/Header';
 import NotFound from './components/pages/404/NotFound';
 import Login from './components/pages/login/Login';
 
-// const router = createBrowserRouter([
-//   {
-//     path: "/",
-//     element: <Home/>,
-//     errorElement: <NotFound />,
-//   },
-//   {
-//     path: "/register",
-//     element: <Register/>,
-//   },
-// ]);
+const userContext = React.createContext('false');
 
 function App() {
+
   return (
-    <div class="App">
+    <div className="App">
       <Router>
-        <Header/>
+        <userContext.Provider value="false">
+          <Header/>
+        </userContext.Provider>
         <hr />
         <Routes>
           <Route path="/" element={<Home />} />

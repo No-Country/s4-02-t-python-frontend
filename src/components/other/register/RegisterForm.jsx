@@ -2,32 +2,32 @@ import React from 'react';
 
 export default function RegisterForm() {
   return (
-  <form class="col-5 mx-auto">
-    <div class="mb-3">
+  <form className="col-5 mx-auto">
+    <div className="mb-3">
       <h1>Crear una cuenta</h1>
     </div>
-    <div class="mb-3">
-      <label for="first-name" class="form-label m-0">Nombre(s)</label>
-      <input type="text" id="first-name" class="form-control form-control-sm"></input>
+    <div className="mb-3">
+      <label htmlFor="first-name" className="form-label m-0">Nombre(s)</label>
+      <input type="text" id="first-name" className="form-control form-control-sm"></input>
     </div>
-    <div class="mb-3">
-      <label for="last-name" class="form-label m-0">Apellido(s)</label>
-      <input type="text" id="last-name" class="form-control form-control-sm"></input>
+    <div className="mb-3">
+      <label htmlFor="last-name" className="form-label m-0">Apellido(s)</label>
+      <input type="text" id="last-name" className="form-control form-control-sm"></input>
     </div>
-    <div class="mb-3">
-      <label for="email" class="form-label m-0">Correo electrónico</label>
-      <input type="text" id="email" class="form-control form-control-sm" autoComplete="off"></input>
+    <div className="mb-3">
+      <label htmlFor="email" className="form-label m-0">Correo electrónico</label>
+      <input type="text" id="email" className="form-control form-control-sm" autoComplete="off"></input>
     </div>
-    <div class="mb-3">
-      <label for="password" class="form-label m-0">Contraseña</label>
-      <input type="password" id="password" class="form-control form-control-sm" autoComplete="new-password"></input>
+    <div className="mb-3">
+      <label htmlFor="password" className="form-label m-0">Contraseña</label>
+      <input type="password" id="password" className="form-control form-control-sm" autoComplete="new-password"></input>
     </div>
-    <div class="mb-3">
-      <label for="address" class="form-label m-0">Ciudad</label>
-      <input type="text" id="address" class="form-control form-control-sm"></input>
+    <div className="mb-3">
+      <label htmlFor="address" className="form-label m-0">Ciudad</label>
+      <input type="text" id="address" className="form-control form-control-sm"></input>
     </div>
-    <div class="mb-3 text-center">
-      <button type="button" class="btn btn-primary text-white">Crear</button>
+    <div className="mb-3 text-center">
+      <button type="button" className="btn btn-primary text-white">Crear</button>
     </div>
   </form>
   )

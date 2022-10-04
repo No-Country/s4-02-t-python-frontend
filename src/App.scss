@@ -3,13 +3,19 @@
 @import "../node_modules/bootstrap/scss/variables";
 @import "../node_modules/bootstrap/scss/mixins";
 
-* {
-  font-family: "Gilroy-Regular";
-}
-
 $primary: #F07E8C;
 $secondary: #fff;
 // $my-color: red;
+
+* {
+  font-family: "Gilroy-Regular";
+
+  // .btn-secondary {
+  //   &:hover {
+  //     color: $primary !important;
+  //   }
+  // }
+}
 
 $theme-colors: (
   primary: $primary,
@@ -19,7 +25,7 @@ $theme-colors: (
 
 $input-bg: $gray-400;
 
-$navbar-nav-active-color: blue;
+// $navbar-nav-active-color: blue;
 
 // Add below your SASS or CSS code
 
