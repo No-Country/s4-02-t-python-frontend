@@ -3,3 +3,13 @@
 .active {
     border: 1px solid #000 !important;
 }
+
+.search-container {
+    display: none;
+}
+
+@include media-breakpoint-up(sm) {
+    .search-container {
+      display: inline;
+    }
+}
