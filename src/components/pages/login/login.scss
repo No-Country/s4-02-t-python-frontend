@@ -1,0 +1,11 @@
+@import "../../../App.scss";
+
+.info-container {
+    display: none;
+}
+
+@include media-breakpoint-up(sm) {
+    .info-container {
+      display: block;
+    }
+}

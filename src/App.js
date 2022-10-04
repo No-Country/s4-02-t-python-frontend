@@ -20,7 +20,7 @@ function App() {
         <userContext.Provider value="false">
           <Header/>
         </userContext.Provider>
-        <hr />
+        <hr className='mt-0 mb-3'/>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/register" element={<Register />} />
