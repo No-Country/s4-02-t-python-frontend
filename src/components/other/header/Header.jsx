@@ -6,7 +6,7 @@ import './header.scss';
 
 export default function Header() {
   return (
-    <nav className="navbar navbar-expand-lg bg-light container justify-content-between">
+    <nav className="navbar navbar-expand-lg bg-white container justify-content-between">
       <div className="col-2">
         <a href="/"><img src={isologo} alt="logo" height="60" className="mx-3"/></a>
       </div>
