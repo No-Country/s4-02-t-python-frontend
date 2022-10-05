@@ -1,16 +1,18 @@
-import React from 'react';
-
-
+import React, { useContext } from 'react';
+import { UserContext } from '../../../App';
+import { useNavigate } from 'react-router-dom';
 
 export default function LoginForm() {
 
+  const [ user, setUser ] = useContext(UserContext);
+  const navigate = useNavigate();
+
   function signIn () {
-    console.log('entrarr');
+    setUser(user => !user);
+    navigate('/donar');
   }
 
   return (
-
-
     <form className="col-5 mx-auto">
     <div className="mb-3">
       <h1>Iniciar sesión</h1>
