@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function RegisterForm() {
   return (
-  <form className="mx-auto">
+  <form className="container mx-auto">
     <div className="mb-3">
       <h1>Crear una cuenta</h1>
     </div>

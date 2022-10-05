@@ -153,12 +153,6 @@ export default function Home() {
         </button>
 
       </section>
-
-      {/* footer */}
-      <section>FOOTER</section>
-
-
     </main>
-    
   )
 }
