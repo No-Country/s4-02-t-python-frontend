@@ -9,6 +9,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Header from './components/other/header/Header';
 import NotFound from './components/pages/404/NotFound';
 import Login from './components/pages/login/Login';
+import Footer from './components/other/footer/Footer';
 
 const userContext = React.createContext('false');
 
@@ -27,6 +28,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
+        <Footer/>
       </Router>
     </div>
   );

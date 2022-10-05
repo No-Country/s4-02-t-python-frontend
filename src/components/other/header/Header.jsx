@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import isologo from '../../../assets/header/isologo.png';
+import brandImg from '../../../assets/logotipo.png';
 
 import './header.scss';
 
@@ -8,7 +8,7 @@ export default function Header() {
   return (
     <nav className="navbar navbar-expand-lg bg-white container justify-content-between">
       <div className="col-2">
-        <a href="/"><img src={isologo} alt="logo" height="60" className="mx-3"/></a>
+        <a href="/"><img src={brandImg} alt="logo" height="60" className="mx-3 img-fluid"/></a>
       </div>
       
       <div className="search-container col-6">
