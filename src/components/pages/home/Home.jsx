@@ -1,12 +1,14 @@
 import React from 'react';
 import './home.scss';
+import Carousel from 'react-bootstrap/Carousel';
+
 import figureImg from '../../../assets/home/figure.png';
 import proyectoHermesImg from '../../../assets/home/proyecto-hermes.png';
 import buscarImg from '../../../assets/home/undraw_web_search_re_efla1.png';
 import contactoImg from '../../../assets/home/undraw_profile_details_re_ch9r1.png';
 import conversarImg from '../../../assets/home/undraw_personal_text_re_vqj31.png';
 import reuneteImg from '../../../assets/home/undraw_term_sheet_re_ju7s1.png';
-import pfp1 from '../../../assets/home/pfp1.png';
+import testimonialAvatar from '../../../assets/home/pfp1.png';
 
 
 export default function Home() {
@@ -91,67 +93,49 @@ export default function Home() {
       </section>
       
       {/* testimonios */}
-      <section id="carouselExampleControls" class="carousel slide bg-primary" data-bs-ride="carousel">
-        <h2 className='py-3 text-white'><strong>Testimonios</strong></h2>
-
-        <div class="carousel-inner">
-        <div class="carousel-item active card mb-3 w-50">
-          {/* <div class="card mb-3 w-50 carousel-item active"> */}
-            <div class="row g-0">
-              <div class="col-md-4 text-center mt-3">
-                <img src={pfp1} class="img-fluid rounded-start" alt="..." />
-              </div>
-              <div class="col-md-8">
-                <div class="card-body">
-                  <h5 class="card-title">Darrell Steward1</h5>
-                  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                  <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                </div>
+      <section className='container bg-primary'>
+        <h2 className='text-white'><strong>Testimonios</strong></h2>
+        <Carousel className='mx-auto' variant='dark'>
+          <Carousel.Item className='mb-3'>
+            <div className='d-flex w-50 mx-auto bg-white'>
+              <img
+                className="img-fluid h-50"
+                src={testimonialAvatar}
+                alt="First slide"
+              />
+              <div className='mb-3'>
+                <h5>Darrell Steward1</h5>
+                <p>Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.</p>
               </div>
             </div>
-          </div>
-
-          <div class="carousel-item card mb-3 w-50">
-          {/* <div class="card mb-3 w-50 carousel-item"> */}
-            <div class="row g-0">
-              <div class="col-md-4 text-center mt-3">
-                <img src={pfp1} class="img-fluid rounded-start" alt="..." />
-              </div>
-              <div class="col-md-8">
-                <div class="card-body">
-                  <h5 class="card-title">Darrell Steward2</h5>
-                  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                  <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                </div>
+          </Carousel.Item>
+          <Carousel.Item className='mb-3'>
+            <div className='d-flex w-50 mx-auto bg-white'>
+              <img
+                className="img-fluid h-50"
+                src={testimonialAvatar}
+                alt="First slide"
+              />
+              <div className='mb-3'>
+                <h5>Darrell Steward2</h5>
+                <p>Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.</p>
               </div>
             </div>
-          </div>
-
-          <div class="card mb-3 w-50 carousel-item">
-            <div class="row g-0">
-              <div class="col-md-4 text-center mt-3">
-                <img src={pfp1} class="img-fluid rounded-start" alt="..." />
-              </div>
-              <div class="col-md-8">
-                <div class="card-body">
-                  <h5 class="card-title">Darrell Steward3</h5>
-                  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                  <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                </div>
+          </Carousel.Item>
+          <Carousel.Item className='mb-3'>
+            <div className='d-flex w-50 mx-auto bg-white'>
+              <img
+                className="img-fluid h-50"
+                src={testimonialAvatar}
+                alt="First slide"
+              />
+              <div className='mb-3'>
+                <h5>Darrell Steward3</h5>
+                <p>Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.</p>
               </div>
             </div>
-          </div>
-        </div>
-
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Next</span>
-        </button>
-
+          </Carousel.Item>
+        </Carousel>
       </section>
     </main>
   )
