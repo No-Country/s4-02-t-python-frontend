@@ -7,6 +7,7 @@ import Header from './components/other/header/Header';
 import NotFound from './components/pages/404/NotFound';
 import Login from './components/pages/login/Login';
 import Footer from './components/other/footer/Footer';
+import CreatePost from './components/pages/create-post/CreatePost';
 
 export const UserContext = React.createContext();
 
@@ -24,6 +25,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/donar" element={<CreatePost />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
         <Footer/>
