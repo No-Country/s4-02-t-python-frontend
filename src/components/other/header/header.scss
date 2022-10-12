@@ -4,6 +4,12 @@
     border: 1px solid #000 !important;
 }
 
+.btn-outline-primary {
+    &:hover {
+        color: #fff;
+    }
+}
+
 .search-container {
     display: none;
 }

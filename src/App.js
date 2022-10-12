@@ -8,6 +8,7 @@ import NotFound from './components/pages/404/NotFound';
 import Login from './components/pages/login/Login';
 import Footer from './components/other/footer/Footer';
 import CreatePost from './components/pages/create-post/CreatePost';
+import PostDetail from './components/pages/post-detail/PostDetail';
 
 export const UserContext = React.createContext();
 
@@ -26,6 +27,7 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
           <Route path="/donar" element={<CreatePost />} />
+          <Route path="/post/:id" element={<PostDetail />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
         <Footer/>
