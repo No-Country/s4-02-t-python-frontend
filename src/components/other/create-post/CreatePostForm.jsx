@@ -1,6 +1,17 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export default function CreatePostForm() {
+
+  const navigate = useNavigate();
+
+  // hardcodeado, change later
+  const postId = 1;
+
+  const post = () => {
+    navigate(`/post/${postId}`);
+  }
+
   return (
     <form className="container mx-auto">
     <div className="mb-3">
@@ -35,7 +46,7 @@ export default function CreatePostForm() {
       <input type="file" id="attachment" className="form-control form-control-sm"></input>
     </div>
     <div className="mb-3 text-center">
-      <button type="button" className="btn btn-primary text-white">Publicar</button>
+      <button type="button" className="btn btn-primary text-white" onClick={() => post()}>Publicar</button>
     </div>
   </form>
   )

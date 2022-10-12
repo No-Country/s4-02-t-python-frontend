@@ -30,7 +30,7 @@ export default function Header() {
       {user ?
         <div className="navbar-nav justify-content-end">
           <NavLink to="/donar" className="btn btn-secondary m-2">Donar</NavLink>
-          <button onClick={() => signOut()}>icono logout</button>
+          <button onClick={() => signOut()} className='btn btn-outline-primary border-0 m-2'>Cerrar sesión</button>
         </div>
       :
         <div className="navbar-nav justify-content-end">
