@@ -1,0 +1,15 @@
+// @import "node_modules/bootstrap/scss/functions";
+// @import "node_modules/bootstrap/scss/variables";
+// @import "node_modules/bootstrap/scss/mixins";
+
+@import "../../../App.scss";
+
+.info-container {
+    display: none;
+}
+
+@include media-breakpoint-up(sm) {
+    .info-container {
+      display: block;
+    }
+}

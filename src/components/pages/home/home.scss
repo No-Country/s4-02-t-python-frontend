@@ -1,0 +1,19 @@
+@import "../../../App.scss";
+
+.figure-img {
+    z-index: -1;
+}
+
+main {
+    font-size: 0.5rem;
+}
+
+.carousel .carousel-item {
+  border: none !important;
+}
+
+@include media-breakpoint-up(sm) {
+    main {
+      font-size: 1rem;
+    }
+}

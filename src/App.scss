@@ -1,0 +1,38 @@
+// (Required) Import Bootstrap
+@import "../node_modules/bootstrap/scss/functions";
+@import "../node_modules/bootstrap/scss/variables";
+@import "../node_modules/bootstrap/scss/mixins";
+
+$primary: #F07E8C;
+$secondary: #fff;
+// $my-color: red;
+
+* {
+  font-family: "Gilroy";
+
+  // .btn-secondary {
+  //   &:hover {
+  //     color: $primary !important;
+  //   }
+  // }
+}
+
+$theme-colors: (
+  primary: $primary,
+  secondary: $secondary,
+  success:    $success,
+  info:       $info,
+  warning:    $warning,
+  danger:     $danger,
+  light:      $light,
+  dark:       $dark
+);
+
+$input-bg: $gray-400;
+
+// $navbar-nav-active-color: blue;
+
+// Add below your SASS or CSS code
+
+// (Required) Import Bootstrap
+@import "../node_modules/bootstrap/scss/bootstrap";

@@ -1,0 +1,21 @@
+@import '../../../App.scss';
+
+.active {
+    border: 1px solid #000 !important;
+}
+
+.btn-outline-primary {
+    &:hover {
+        color: #fff;
+    }
+}
+
+.search-container {
+    display: none;
+}
+
+@include media-breakpoint-up(sm) {
+    .search-container {
+      display: inline;
+    }
+}
