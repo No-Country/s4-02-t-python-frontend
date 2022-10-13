@@ -3,6 +3,12 @@ import CreatePostForm from '../../other/create-post/CreatePostForm';
 import profilePic from '../../../assets/avatar.png';
 
 export default function CreatePost() {
+
+  // if (document.cookie != 'visited'){
+  //   alert('Hey there, new user!');
+  //   document.cookie = 'visited';
+  // }
+
   return (
     <main className='container d-flex'>
         <CreatePostForm/>
