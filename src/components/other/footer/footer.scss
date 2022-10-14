@@ -1,3 +1,19 @@
+@import "../../../App.scss";
+
 footer .row .col .container-links {
     font-size: 0.75rem;
+}
+
+.footer-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    img {
+        min-width: 80px;
+    }
+}
+
+@include media-breakpoint-up(sm) {
+    .footer-container {
+      display: flex;
+    }
 }
