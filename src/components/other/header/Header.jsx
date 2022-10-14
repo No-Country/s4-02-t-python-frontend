@@ -17,6 +17,10 @@ export default function Header() {
     navigate('/login');
   }
 
+  const search = () => {
+    navigate('/posts');
+  }
+
   return (
     <nav className="navbar navbar-expand-lg bg-white container justify-content-between">
       <div className="col-2">
@@ -24,7 +28,8 @@ export default function Header() {
       </div>
       
       <div className="search-container col-6">
-        <input className="form-control me-2" type="search" placeholder="¿Que medicamento Buscas?"/>
+        <input className="form-control me-2" type="search" placeholder="¿Que medicamento Buscas?"
+        onKeyPress={() => search()}/>
       </div>
 
       {user ?
