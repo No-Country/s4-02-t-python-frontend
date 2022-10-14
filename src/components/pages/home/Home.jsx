@@ -16,7 +16,7 @@ export default function Home() {
   return (
     <main className='container'>
       <img src={figureImg} alt="figure" className='figure-img img-fluid position-absolute end-0 mh-100'/>
-      <section className='container col-5 ms-0 pt-3 vh-100'>
+      <section className='ms-0 pt-3 vh-100 landing-container'>
         <h1 className='mt-3'><strong>¿Sabias que puedes donar medicamentos en la app
           <span className='text-primary'> Hermes?</span>
         </strong></h1>
@@ -28,7 +28,7 @@ export default function Home() {
       </section>
 
       {/* proyecto hermes */}
-      <section className='container d-flex py-3'>
+      <section className='container py-3 proyecto-hermes'>
         <div>
           <img src={proyectoHermesImg} alt="proyecto-hermes" className='img-fluid vw-100' />
         </div>
@@ -46,7 +46,7 @@ export default function Home() {
         </div>
         
         {/* grilla 2x2 */}
-        <section className='row row-cols-2 mb-3'>
+        <section className='mb-3 como-funciona-hermes'>
           <article className='d-flex'>
             <div className='col-4'>
               <img src={buscarImg} alt="proyecto-hermes" className='img-fluid' />
@@ -100,9 +100,9 @@ export default function Home() {
         </div>
         <Carousel className='mx-auto' variant='dark'>
           <Carousel.Item className='mb-3'>
-            <div className='d-flex w-50 mx-auto bg-white rounded p-3'>
+            <div className='d-flex w-75 mx-auto bg-white rounded p-3'>
               <img
-                className="img-fluid h-50"
+                className="img-fluid h-50 "
                 src={testimonialAvatar}
                 alt="First slide"
               />
@@ -113,7 +113,7 @@ export default function Home() {
             </div>
           </Carousel.Item>
           <Carousel.Item className='mb-3'>
-            <div className='d-flex w-50 mx-auto bg-white rounded p-3'>
+            <div className='d-flex w-75 mx-auto bg-white rounded p-3'>
               <img
                 className="img-fluid h-50"
                 src={testimonialAvatarSecond}
@@ -126,7 +126,7 @@ export default function Home() {
             </div>
           </Carousel.Item>
           <Carousel.Item className='mb-3'>
-            <div className='d-flex w-50 mx-auto bg-white rounded p-3'>
+            <div className='d-flex w-75 mx-auto bg-white rounded p-3'>
               <img
                 className="img-fluid h-50"
                 src={testimonialAvatar}
