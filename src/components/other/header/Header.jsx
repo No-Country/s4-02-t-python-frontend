@@ -6,7 +6,7 @@ import brandImg from '../../../assets/logotipo.png';
 
 import './header.scss';
 
-export default function Header() {
+export default function Header({toggleSidebar}) {
 
   const [user, setUser] = useContext(UserContext);
 
@@ -33,7 +33,7 @@ export default function Header() {
       </div>
 
       <div className='navbar-mobile'>
-        <button>menu</button>
+        <button onClick={toggleSidebar}>menu</button>
       </div>
       <div className='navbar-desktop'>
         {user ?
@@ -44,7 +44,7 @@ export default function Header() {
         :
           <div className="navbar-nav justify-content-end">
             <NavLink to="/register" className="btn btn-secondary m-2">Registrarse</NavLink>
-            <NavLink to="/login" className="btn btn-secondary m-2" activeclassnmame="active">Iniciar Sesión</NavLink>
+            <NavLink to="/login" className="btn btn-secondary m-2">Iniciar Sesión</NavLink>
           </div>
         }
       </div>
