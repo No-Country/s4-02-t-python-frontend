@@ -10,18 +10,25 @@ import Footer from './components/other/footer/Footer';
 import CreatePost from './components/pages/create-post/CreatePost';
 import PostDetail from './components/pages/post-detail/PostDetail';
 import PostsList from './components/pages/posts-list/PostsList';
+import Sidebar from './components/other/sidebar/Sidebar';
 
 export const UserContext = React.createContext();
 
 function App() {
 
   const [user, setUser] = useState(false);
+  const [sidebar, setSidebar] = useState(false);
+
+  const toggleSidebar = () => {
+    setSidebar(!sidebar);
+  };
 
   return (
     <div className="App">
       <UserContext.Provider value={[user, setUser]}>
       <Router>
-        <Header/>
+        <Sidebar sidebar={sidebar} toggleSidebar={toggleSidebar} />
+        <Header toggleSidebar={toggleSidebar} />
         <hr className='mt-0 mb-3'/>
         <Routes>
           <Route path="/" element={<Home />} />
