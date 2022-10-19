@@ -1,17 +1,20 @@
 import React from 'react';
-import { getDatabase, ref, set } from "firebase/database";
+import { getDatabase, ref, push, set } from "firebase/database";
 import { useForm } from "react-hook-form";
 import { useNavigate } from 'react-router-dom';
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 export default function CreatePostForm() {
+  
+  const navigate = useNavigate();
+  let userId;
 
   const auth = getAuth();
   onAuthStateChanged(auth, (user) => {
     if (user) {
       // User is signed in, see docs for a list of available properties
       // https://firebase.google.com/docs/reference/js/firebase.User
-      const uid = user.uid;
+      userId = user.uid;
       console.log(user.email);
       // ...
     } else {
@@ -25,21 +28,24 @@ export default function CreatePostForm() {
   const onSubmit = data => {
     console.log(data)
     const db = getDatabase();
-    const reference = ref(db, 'medicines/');
-    set(reference, {
+    // const reference = ref(db, 'medicines/' + userId);
+    
+    const postListRef = ref(db, 'medicines');
+    const newPostRef = push(postListRef);
+    set(newPostRef, {
       name: data.name,
       gtin: data.gtin,
       date: data.date,
-      description: data.description
-    })
-  };
+      description: data.description,
+      userId: userId
+    });
 
-  const navigate = useNavigate();
-  // hardcodeado, change later
-  const postId = 1;
-  const post = () => {
-    navigate(`/post/${postId}`);
-  }
+    navigate(`/post/${newPostRef.key}`);
+    console.log(newPostRef.key);
+    // ref.endAt().limitToLast(1).on('child_added', function(snapshot) {
+    //   console.log(snapshot.name(), snapshot.val());
+    // });
+  };
 
   return (
     <form className="container mx-auto">
