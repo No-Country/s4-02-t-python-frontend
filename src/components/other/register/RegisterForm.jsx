@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { useForm } from "react-hook-form";
 import { app } from '../../../App';
 import Modal from 'react-bootstrap/Modal';
@@ -13,15 +13,22 @@ export default function RegisterForm() {
 
     const email = data.email;
     const password = data.password;
-    const city = data.city;
+    const displayName = data.displayName;
     
     console.log({email, password});
 
     const auth = getAuth(app);
-    createUserWithEmailAndPassword(auth, email, password, city)
+    createUserWithEmailAndPassword(auth, email, password, displayName)
     .then((userCredential) => {
       // Signed in
       const user = userCredential.user;
+
+      updateProfile(auth.currentUser, { displayName })
+      // const user = auth.currentUser;
+      // user.updateDisplayName({
+      //   displayName: displayName
+      // })
+
       // ...
     })
     .catch((error) => {
@@ -44,7 +51,7 @@ export default function RegisterForm() {
     </div>
     <div className="mb-3">
       <label htmlFor="first-name" className="form-label m-0">Nombre(s)</label>
-      <input type="text" id="first-name" className="form-control form-control-sm" required {...register("firstName")}></input>
+      <input type="text" id="first-name" className="form-control form-control-sm" required {...register("displayName")}></input>
     </div>
     <div className="mb-3">
       <label htmlFor="last-name" className="form-label m-0">Apellido(s)</label>
