@@ -1,43 +1,79 @@
 import React, { useState } from 'react';
-import { getAuth, createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { BASEURL } from '../../../constants';
+import axios from 'axios';
+
+// import { getAuth, createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { useForm } from "react-hook-form";
-import { app } from '../../../App';
+import { useNavigate } from 'react-router-dom';
+// import { app } from '../../../App';
 import Modal from 'react-bootstrap/Modal';
 
 export default function RegisterForm() {
 
   const [modalShow, setModalShow] = useState(false);
+  const navigate = useNavigate();
   const { register, handleSubmit } = useForm();
   const onSubmit = (data) => {
-    console.log(data)
 
+
+    axios.post(BASEURL + '/users/register', {
+      first_name: data.firstName,
+      last_name: data.lastName,
+      email: data.email,
+      password: data.password,
+      country: data.country,
+      city: data.city,
+    }).then(res => {
+      console.log(res);
+      navigate('/login');
+    }).catch(err => {
+      console.log(err);
+      setModalShow(true);
+    });
+
+    // try {
+      // axios.get(BASEURL + '/users')
+      // .then(res => {
+      //   console.log(res);
+      // })
+      // .catch(err => {
+      //   console.log(err);
+      // });
+    // } catch (error) {
+    //   console.log(error);
+    // }
+    
+
+    // axios.get(BASEURL + '/users/635193c33051f0dcf5ae3cc3')
+    //   .then(res => {
+    //     console.log(res);
+    //   })
+    //   .catch(err => {
+    //     console.log(err);
+    //   });
+
+    // console.log(data)
+    // console.log(BASEURL);
     const email = data.email;
     const password = data.password;
     const displayName = data.displayName;
     
-    console.log({email, password});
+    // console.log({email, password});
 
-    const auth = getAuth(app);
-    createUserWithEmailAndPassword(auth, email, password, displayName)
-    .then((userCredential) => {
+    // const auth = getAuth(app);
+    // createUserWithEmailAndPassword(auth, email, password, displayName)
+    // .then((userCredential) => {
       // Signed in
-      const user = userCredential.user;
+      // const user = userCredential.user;
 
-      updateProfile(auth.currentUser, { displayName })
-      // const user = auth.currentUser;
-      // user.updateDisplayName({
-      //   displayName: displayName
-      // })
-
-      // ...
-    })
-    .catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      console.log(errorCode, errorMessage);
-      setModalShow(true);
-      // ..
-  });
+      // updateProfile(auth.currentUser, { displayName })
+    // })
+    // .catch((error) => {
+      // const errorCode = error.code;
+      // const errorMessage = error.message;
+      // console.log(errorCode, errorMessage);
+      // setModalShow(true);
+  // });
   };
 
   const handleModalClose = () => {
@@ -51,7 +87,7 @@ export default function RegisterForm() {
     </div>
     <div className="mb-3">
       <label htmlFor="first-name" className="form-label m-0">Nombre(s)</label>
-      <input type="text" id="first-name" className="form-control form-control-sm" required {...register("displayName")}></input>
+      <input type="text" id="first-name" className="form-control form-control-sm" required {...register("firstName")}></input>
     </div>
     <div className="mb-3">
       <label htmlFor="last-name" className="form-label m-0">Apellido(s)</label>
@@ -84,7 +120,7 @@ export default function RegisterForm() {
         <Modal.Header closeButton>
           <Modal.Title>Error</Modal.Title>
         </Modal.Header>
-        <Modal.Body>Complete todos los campos</Modal.Body>
+        <Modal.Body>Complete todos los campos correctamente</Modal.Body>
         <Modal.Footer>
           <button className='btn btn-primary text-white' onClick={handleModalClose}>Cerrar</button>
         </Modal.Footer>

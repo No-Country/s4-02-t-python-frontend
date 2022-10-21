@@ -1,8 +1,11 @@
 import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { BASEURL } from '../../../constants';
+import axios from 'axios';
 import { UserContext } from '../../../App';
 import { NavLink } from 'react-router-dom';
 import brandImg from '../../../assets/logotipo.png';
+import { Icon } from '@fluentui/react/lib/Icon';
 
 import './header.scss';
 
@@ -13,13 +16,22 @@ export default function Header({toggleSidebar}) {
   const navigate = useNavigate();
 
   function signOut () {
+    // axios.post(BASEURL + '/users/logout', {
+    //   username: u
+    // }).then(res => {
+    //   console.log(res);
+    // }).catch(err => {
+    //   console.log(err);
+    // });
     setUser(user => !user);
     navigate('/login');
-  }
+  };
 
   const search = () => {
     navigate('/posts');
-  }
+  };
+
+  const MyIcon = () => <Icon iconName="GlobalNavButton" />;
 
   return (
     <nav className="navbar navbar-expand-lg bg-white container justify-content-between">
@@ -33,7 +45,7 @@ export default function Header({toggleSidebar}) {
       </div>
 
       <div className='navbar-mobile'>
-        <button onClick={toggleSidebar}>menu</button>
+        <button onClick={toggleSidebar} className="btn"><MyIcon /></button>
       </div>
       <div className='navbar-desktop'>
         {user ?
