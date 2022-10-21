@@ -17,21 +17,24 @@ import PostDetail from './components/pages/post-detail/PostDetail';
 import PostsList from './components/pages/posts-list/PostsList';
 import Sidebar from './components/other/sidebar/Sidebar';
 
+import { initializeIcons } from '@fluentui/font-icons-mdl2';
+
+
 export const UserContext = React.createContext();
 
-const firebaseConfig = {
-  apiKey: "AIzaSyCiEDxGjzsAs0kl1iB-SFQrq6795PMESsg",
-  authDomain: "hermes-9f08e.firebaseapp.com",
-  databaseURL: "https://hermes-9f08e-default-rtdb.firebaseio.com",
-  projectId: "hermes-9f08e",
-  storageBucket: "hermes-9f08e.appspot.com",
-  messagingSenderId: "834436793034",
-  appId: "1:834436793034:web:a6c5c1df1608e0df626a33",
-  measurementId: "G-QPQCKTJ9EM"
-};
+// const firebaseConfig = {
+//   apiKey: "AIzaSyCiEDxGjzsAs0kl1iB-SFQrq6795PMESsg",
+//   authDomain: "hermes-9f08e.firebaseapp.com",
+//   databaseURL: "https://hermes-9f08e-default-rtdb.firebaseio.com",
+//   projectId: "hermes-9f08e",
+//   storageBucket: "hermes-9f08e.appspot.com",
+//   messagingSenderId: "834436793034",
+//   appId: "1:834436793034:web:a6c5c1df1608e0df626a33",
+//   measurementId: "G-QPQCKTJ9EM"
+// };
 
-export const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
+// export const app = initializeApp(firebaseConfig);
+// const auth = getAuth(app);
 
 function App() {
 
@@ -41,6 +44,8 @@ function App() {
   const toggleSidebar = () => {
     setSidebar(!sidebar);
   };
+  
+  initializeIcons();
 
   return (
     <div className="App">

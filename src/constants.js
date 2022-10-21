@@ -1,0 +1,1 @@
+export const BASEURL = 'https://hermesnc.herokuapp.com/api/v1';

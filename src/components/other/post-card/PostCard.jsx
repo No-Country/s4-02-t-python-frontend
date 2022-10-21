@@ -1,7 +1,9 @@
+import axios from 'axios';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import avatarImg from '../../../assets/avatar.png';
 import medicamentoImg from '../../../assets/unsplash_8epPqtF9x5I.png';
+import { BASEURL } from '../../../constants';
 
 export default function PostCard(props) {
 
@@ -23,6 +25,7 @@ export default function PostCard(props) {
             <p className='mx-3'>Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.</p>
         </section>
         <section className='container d-flex flex-column mb-3'>
+            {props.image && <img src={props.image}></img>}
             <img src={medicamentoImg} alt="" className='img-fluid m-3'/>
             <div className='text-center'>
                 <button className='btn btn-primary text-white' onClick={() => goToDetail()}>Ver en detalle</button>
