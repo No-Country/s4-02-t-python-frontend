@@ -35,6 +35,7 @@ export default function Sidebar({sidebar, toggleSidebar}) {
               </div>
             }
             <div className='row'>
+              <NavLink to="/posts" className="btn text-white m-2">Publicaciones</NavLink>
               <NavLink to="/sobre-nosotros" className="btn text-white m-2">Sobre nosotros</NavLink>
               <NavLink to="/ayuda" className="btn text-white m-2">Ayuda</NavLink>
             </div>

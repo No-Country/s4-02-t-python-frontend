@@ -7,6 +7,7 @@ import PostCard from '../../other/post-card/PostCard';
 export default function PostsList() {
 
   const [posts, setPosts] = useState([]);
+  const [filter, setFilter] = useState('');
   
   useEffect(() => {
     async function fetchPosts() {
@@ -16,19 +17,28 @@ export default function PostsList() {
         }).catch(err => console.log(err));
     }
     fetchPosts();
-  }, [])
+  }, [posts])
+
+  useEffect(() => {
+    setFilter(localStorage.getItem('filter'));
+  }, [filter])
 
   return (
     <main className='container d-grid gap-3 mb-3'>
-      {posts ? posts.map(post => <PostCard key={post._id.$oid}
-                                            author={post.author}
-                                            description={post.description}
-                                            drugName={post.drug_name}
-                                            meetingPlace={post.meeting_place}
-                                            presentation={post.presentation}
-                                            publicationDate={post.publication_date}
-                                            postId={post._id.$oid}
-                                            ></PostCard>).reverse() : <div>Cargando...</div>}
+      {posts ? posts.map(post =>
+                        <PostCard key={post._id.$oid}
+                          author={post.author}
+                          description={post.description}
+                          drugName={post.drug_name}
+                          meetingPlace={post.meeting_place}
+                          presentation={post.presentation}
+                          publicationDate={post.publication_date}
+                          postId={post._id.$oid}
+                          ></PostCard>
+                          ).reverse()
+        :
+          <div>Cargando...</div>
+      }
     </main>
   )
 }

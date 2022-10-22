@@ -6,48 +6,62 @@ import brandImg from '../../../assets/logotipo.png';
 import { Icon } from '@fluentui/react/lib/Icon';
 
 import './header.scss';
+import { useState } from 'react';
 
 export default function Header({toggleSidebar}) {
 
   const [user, setUser] = useContext(UserContext);
+  const [filter, setFilter] = useState('');
 
   const navigate = useNavigate();
 
   function signOut () {
-    // axios.post(BASEURL + '/users/logout', {
-    //   username: u
-    // }).then(res => {
+    // axios.get(BASEURL + '/users/logout')
+    // .then(res => {
     //   console.log(res);
     // }).catch(err => {
     //   console.log(err);
     // });
-    setUser(user => !user);
+    setUser('');
     localStorage.setItem('user', '');
     navigate('/login');
   };
 
-  const search = () => {
-    navigate('/posts');
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter') {
+      navigate('/posts');
+    }
   };
+
+  const handleChange = (e) => {
+    setFilter(e.target.value);
+    localStorage.setItem('filter', filter);
+  }
 
   const NavIcon = () => <Icon iconName="GlobalNavButton" />;
 
   return (
     <nav className="navbar navbar-expand-lg bg-white container justify-content-between">
       <div className="col-2">
-        <NavLink to="/" className="brand-img"><img src={brandImg} alt="logo" height="60" className="mx-3 img-fluid"/></NavLink>
+        {
+          user === 'user' ? 
+          <NavLink to="/posts" className="brand-img"><img src={brandImg} alt="logo" height="60" className="mx-3 img-fluid"/></NavLink>
+          :
+          <NavLink to="/" className="brand-img"><img src={brandImg} alt="logo" height="60" className="mx-3 img-fluid"/></NavLink>
+        }
       </div>
       
       <div className="search-container w-50">
-        <input className="form-control me-2" type="search" placeholder="¿Que medicamento Buscas?"
-        onKeyPress={() => search()}/>
+        <input className="form-control me-2" type="search" placeholder="¿Que medicamento Buscas?" value={filter}
+        onKeyDown={handleKeyDown}
+        onChange={handleChange} />
       </div>
 
       <div className='navbar-mobile'>
         <button onClick={toggleSidebar} className="btn"><NavIcon /></button>
       </div>
       <div className='navbar-desktop'>
-        {user ?
+        {user === 'user' ?
           <div className="navbar-nav justify-content-end">
             <NavLink to="/donar" className="btn btn-secondary m-2">Donar</NavLink>
             <button onClick={() => signOut()} className='btn btn-outline-primary border-0 m-2'>Cerrar sesión</button>
