@@ -4,18 +4,32 @@
     border: 1px solid #000 !important;
 }
 
+.brand-img {
+    border: none !important;
+}
+
 .btn-outline-primary {
     &:hover {
         color: #fff;
     }
 }
 
-.search-container {
+// .search-container {
+//     display: none;
+// }
+
+.navbar-desktop {
     display: none;
 }
 
 @include media-breakpoint-up(sm) {
     .search-container {
       display: inline;
+    }
+    .navbar-mobile {
+        display: none;
+    }
+    .navbar-desktop {
+        display: inline;
     }
 }
