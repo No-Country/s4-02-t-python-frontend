@@ -11,11 +11,12 @@ export default function Sidebar({sidebar, toggleSidebar}) {
 
   function signOut () {
     setUser(user => !user);
+    localStorage.setItem('user', '');
     navigate('/login');
   }
 
   return (
-    <div className={sidebar == true ? 'open' : 'closed'}>
+    <div className={sidebar === true ? 'open' : 'closed'}>
         <div className="">
           <div className='row'>
             <button onClick={toggleSidebar} className="btn text-white m-2">X</button>

@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './App.scss';
 
-import { initializeApp } from "firebase/app";
-import { getAuth } from "firebase/auth";
+// import { initializeApp } from "firebase/app";
+// import { getAuth } from "firebase/auth";
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
@@ -38,8 +38,19 @@ export const UserContext = React.createContext();
 
 function App() {
 
-  const [user, setUser] = useState(false);
+  const [user, setUser] = useState('');
   const [sidebar, setSidebar] = useState(false);
+  
+  useEffect(() => {
+    const localUser = localStorage.getItem('user', user);
+    if (localUser === '') {
+      setUser('');
+    } else {
+      setUser('user');
+    }
+    
+  }, [user])
+  
 
   const toggleSidebar = () => {
     setSidebar(!sidebar);

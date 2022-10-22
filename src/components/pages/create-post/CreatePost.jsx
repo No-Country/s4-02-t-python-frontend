@@ -1,6 +1,6 @@
 import React from 'react';
 import CreatePostForm from '../../other/create-post/CreatePostForm';
-import profilePic from '../../../assets/avatar.png';
+// import profilePic from '../../../assets/avatar.png';
 import legalImg from '../../../assets/create-post/undraw_contract_re_ves9.svg';
 
 export default function CreatePost() {

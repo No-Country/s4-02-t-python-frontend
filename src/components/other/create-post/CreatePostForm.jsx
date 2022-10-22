@@ -12,7 +12,7 @@ import { BASEURL } from '../../../constants';
 export default function CreatePostForm() {
   
   const [medicines, setMedicines] = useState([]);
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   let medicineName;
 
   useEffect(() => {
@@ -39,7 +39,7 @@ export default function CreatePostForm() {
   // });
 
   const { register, handleSubmit } = useForm();
-  const onSubmit = data => {
+  const onSubmit = (data) => {
     console.log(data)
 
     // const formData = new FormData();
@@ -51,16 +51,24 @@ export default function CreatePostForm() {
     //   console.log(pair[0]+ ', ' + pair[1]); 
     // }
 
-    medicineName = medicines.find(medication => medication._id.$oid == data.name).name;
+    medicineName = medicines.find(medication => medication._id.$oid === data.name).name;
+    console.log(medicineName);
+
+    const config = {
+      headers:{
+        'Content-Type': 'application/json',
+        "Access-Control-Allow-Origin": "*"
+      }
+    };
 
     axios.post(BASEURL + '/post/create_post', {
-      publication_type: "Donación de un medicamento",
+      publication_type: "donacion de medicamento",
       image: medicineName,
       drug_name: medicineName,
       description: data.description,
       presentation: data.presentation,
-      meeting_place: data.location,      
-    }).then(res => {
+      meeting_place: data.location,
+    }, config).then(res => {
       console.log(res);
     }).catch(err => {
       console.log(err);
@@ -100,10 +108,10 @@ export default function CreatePostForm() {
       <label htmlFor="gtin" className="form-label m-0">Identificador (GTIN)</label>
       <input type="text" id="gtin" className="form-control form-control-sm" {...register("gtin")}></input>
     </div> */}
-    <div className="mb-3">
+    {/* <div className="mb-3">
       <label htmlFor="expiration-date" className="form-label m-0">Fecha de expiración</label>
       <input type="date" id="expiration-date" className="form-control form-control-sm" {...register("date")}></input>
-    </div>
+    </div> */}
     {/* <div className="mb-3">
       <label htmlFor="batch-number" className="form-label m-0">N° de tanda/lote</label>
       <input type="text" id="batch-number" className="form-control form-control-sm" {...register("batch")}></input>
@@ -124,10 +132,10 @@ export default function CreatePostForm() {
       <label htmlFor="location" className="form-label m-0">Ubicación</label>
       <input type="text" id="location" className="form-control form-control-sm" {...register("location")}></input>
     </div>
-    <div className="mb-3">
+    {/* <div className="mb-3">
       <label htmlFor="attachment" className="form-label m-0">Agregar imagen</label>
       <input type="file" id="attachment" className="form-control form-control-sm" {...register("image")}></input>
-    </div>
+    </div> */}
     <div className="mb-3 text-center">
       <button type="button" className="btn btn-primary text-white" onClick={handleSubmit(onSubmit)}>Publicar</button>
     </div>

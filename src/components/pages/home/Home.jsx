@@ -10,6 +10,7 @@ import conversarImg from '../../../assets/home/undraw_personal_text_re_vqj31.png
 import reuneteImg from '../../../assets/home/undraw_term_sheet_re_ju7s1.png';
 import testimonialAvatar from '../../../assets/home/pfp1.png';
 import testimonialAvatarSecond from '../../../assets/home/pfp2.png';
+import testimonialAvatarThird from '../../../assets/home/pfp3.png';
 
 
 export default function Home() {
@@ -129,11 +130,11 @@ export default function Home() {
             <div className='d-flex w-75 mx-auto bg-white rounded p-3'>
               <img
                 className="img-fluid h-50"
-                src={testimonialAvatar}
+                src={testimonialAvatarThird}
                 alt="First slide"
               />
               <div className='ms-3'>
-                <h5>Esther Howard</h5>
+                <h5>Kris Watson</h5>
                 <p>Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.</p>
               </div>
             </div>

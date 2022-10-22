@@ -54,9 +54,9 @@ export default function RegisterForm() {
 
     // console.log(data)
     // console.log(BASEURL);
-    const email = data.email;
-    const password = data.password;
-    const displayName = data.displayName;
+    // const email = data.email;
+    // const password = data.password;
+    // const displayName = data.displayName;
     
     // console.log({email, password});
 

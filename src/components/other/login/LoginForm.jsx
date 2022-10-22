@@ -11,8 +11,8 @@ import axios from 'axios';
 export default function LoginForm() {
 
   const [user, setUser] = useContext(UserContext);
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  // const [email, setEmail] = useState('');
+  // const [password, setPassword] = useState('');
   const [modalShow, setModalShow] = useState(false);
 
   const navigate = useNavigate();
@@ -30,6 +30,7 @@ export default function LoginForm() {
     }).then(res => {
       if (res.data.message === 'User loging successfull...') {
         setUser(user => !user);
+        localStorage.setItem('user', 'user');
         navigate('/posts');
       } else if (res.data.message === 'Invalid crendentials') {
         setModalShow(true);
@@ -73,7 +74,7 @@ export default function LoginForm() {
   }
 
   return (
-    <form className="col-5 mx-auto">
+    <form className="container mx-auto">
       <div className="mb-3">
         <h1>Iniciar sesión</h1>
       </div>

@@ -1,0 +1,8 @@
+@import '../../../App.scss';
+
+@include media-breakpoint-up(sm) {
+    .details-container {
+      display: flex;
+      flex-direction: row;
+    }
+}

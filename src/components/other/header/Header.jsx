@@ -1,7 +1,5 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { BASEURL } from '../../../constants';
-import axios from 'axios';
 import { UserContext } from '../../../App';
 import { NavLink } from 'react-router-dom';
 import brandImg from '../../../assets/logotipo.png';
@@ -24,6 +22,7 @@ export default function Header({toggleSidebar}) {
     //   console.log(err);
     // });
     setUser(user => !user);
+    localStorage.setItem('user', '');
     navigate('/login');
   };
 
@@ -31,7 +30,7 @@ export default function Header({toggleSidebar}) {
     navigate('/posts');
   };
 
-  const MyIcon = () => <Icon iconName="GlobalNavButton" />;
+  const NavIcon = () => <Icon iconName="GlobalNavButton" />;
 
   return (
     <nav className="navbar navbar-expand-lg bg-white container justify-content-between">
@@ -39,13 +38,13 @@ export default function Header({toggleSidebar}) {
         <NavLink to="/" className="brand-img"><img src={brandImg} alt="logo" height="60" className="mx-3 img-fluid"/></NavLink>
       </div>
       
-      <div className="search-container col-6">
+      <div className="search-container w-50">
         <input className="form-control me-2" type="search" placeholder="¿Que medicamento Buscas?"
         onKeyPress={() => search()}/>
       </div>
 
       <div className='navbar-mobile'>
-        <button onClick={toggleSidebar} className="btn"><MyIcon /></button>
+        <button onClick={toggleSidebar} className="btn"><NavIcon /></button>
       </div>
       <div className='navbar-desktop'>
         {user ?
