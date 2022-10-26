@@ -10,8 +10,8 @@ export default function Sidebar({sidebar, toggleSidebar}) {
   const navigate = useNavigate();
 
   function signOut () {
-    setUser(user => !user);
     localStorage.setItem('user', '');
+    setUser('');
     navigate('/login');
   }
 

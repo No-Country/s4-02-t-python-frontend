@@ -22,8 +22,8 @@ export default function Header({toggleSidebar}) {
     // }).catch(err => {
     //   console.log(err);
     // });
-    setUser('');
     localStorage.setItem('user', '');
+    setUser('');
     navigate('/login');
   };
 
