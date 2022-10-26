@@ -42,7 +42,7 @@ function App() {
   const [sidebar, setSidebar] = useState(false);
   
   useEffect(() => {
-    const localUser = localStorage.getItem('user', user);
+    const localUser = localStorage.getItem('user');
     if (localUser === '') {
       setUser('');
     } else {

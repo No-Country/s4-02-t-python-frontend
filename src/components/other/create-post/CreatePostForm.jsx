@@ -51,7 +51,7 @@ export default function CreatePostForm() {
     //   console.log(pair[0]+ ', ' + pair[1]); 
     // }
 
-    medicineName = medicines.find(medication => medication._id.$oid === data.name).name;
+    medicineName = medicines.find(medication => medication._id.$oid === data.name);
     console.log(medicineName);
 
     const config = {
@@ -63,8 +63,8 @@ export default function CreatePostForm() {
 
     axios.post(BASEURL + '/post/create_post', {
       publication_type: "donacion de medicamento",
-      image: medicineName,
-      drug_name: medicineName,
+      image: medicineName.name,
+      drug_name: medicineName._id.$oid,
       description: data.description,
       presentation: data.presentation,
       meeting_place: data.location,
@@ -99,8 +99,8 @@ export default function CreatePostForm() {
       <h1>Donar un medicamento</h1>
     </div>
     <div className="mb-3">
-      <label htmlFor="product-name" className="form-label m-0">Nombre del medicamento</label>
-      <select name="product-name" id="product-name" className='form-select' {...register("name")}>
+      <label htmlFor="name" className="form-label m-0">Nombre del medicamento</label>
+      <select name="name" id="name" className='form-select' {...register("name")}>
         {medicines.map(medication => <option value={medication._id.$oid} key={medication._id.$oid}>{medication.name}</option>)}
       </select>
     </div>

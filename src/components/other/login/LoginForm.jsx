@@ -29,8 +29,8 @@ export default function LoginForm() {
       password: data.password,
     }).then(res => {
       if (res.data.message === 'User loging successfull...') {
-        setUser(user => !user);
         localStorage.setItem('user', 'user');
+        setUser('user');
         navigate('/posts');
       } else if (res.data.message === 'Invalid crendentials') {
         setModalShow(true);
