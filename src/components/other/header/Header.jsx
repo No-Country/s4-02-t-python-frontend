@@ -7,8 +7,9 @@ import { Icon } from '@fluentui/react/lib/Icon';
 
 import './header.scss';
 import { useState } from 'react';
+import { useEffect } from 'react';
 
-export default function Header({toggleSidebar}) {
+export default function Header({toggleSidebar, filterSearch}) {
 
   const [user, setUser] = useContext(UserContext);
   const [filter, setFilter] = useState('');
@@ -35,8 +36,11 @@ export default function Header({toggleSidebar}) {
 
   const handleChange = (e) => {
     setFilter(e.target.value);
-    localStorage.setItem('filter', filter);
   }
+
+  useEffect(() => {
+    filterSearch(filter);
+  }, [filter, filterSearch])
 
   const NavIcon = () => <Icon iconName="GlobalNavButton" />;
 
