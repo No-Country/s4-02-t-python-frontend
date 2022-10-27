@@ -5,7 +5,7 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 // import { getDatabase, ref, push, set } from "firebase/database";
 import { useForm } from "react-hook-form";
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 import { BASEURL } from '../../../constants';
 // import { getAuth, onAuthStateChanged } from "firebase/auth";
 
@@ -24,19 +24,6 @@ export default function CreatePostForm() {
     }
     fetchMedicines();
   }, [])
-
-  // const auth = getAuth();
-  // onAuthStateChanged(auth, (user) => {
-  //   if (user) {
-      // https://firebase.google.com/docs/reference/js/firebase.User
-      // userId = user.uid;
-      // console.log(user.email);
-      // ...
-    // } else {
-      // User is signed out
-      // navigate('/login');
-    // }
-  // });
 
   const { register, handleSubmit } = useForm();
   const onSubmit = (data) => {
@@ -73,19 +60,7 @@ export default function CreatePostForm() {
     }).catch(err => {
       console.log(err);
     })
-    // const db = getDatabase();
-    // const reference = ref(db, 'medicines/' + userId);
     
-    // const postListRef = ref(db, 'medicines');
-    // const newPostRef = push(postListRef);
-    // set(newPostRef, {
-    //   name: data.name,
-    //   gtin: data.gtin,
-    //   date: data.date,
-    //   description: data.description,
-    //   userId: userId
-    // });
-
     // navigate(`/post/${newPostRef.key}`);
     // console.log(newPostRef.key);
     // ref.endAt().limitToLast(1).on('child_added', function(snapshot) {

@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './App.scss';
 
-// import { initializeApp } from "firebase/app";
-// import { getAuth } from "firebase/auth";
-
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import Home from './components/pages/home/Home';
@@ -19,27 +16,13 @@ import Sidebar from './components/other/sidebar/Sidebar';
 
 import { initializeIcons } from '@fluentui/font-icons-mdl2';
 
-
 export const UserContext = React.createContext();
-
-// const firebaseConfig = {
-//   apiKey: "AIzaSyCiEDxGjzsAs0kl1iB-SFQrq6795PMESsg",
-//   authDomain: "hermes-9f08e.firebaseapp.com",
-//   databaseURL: "https://hermes-9f08e-default-rtdb.firebaseio.com",
-//   projectId: "hermes-9f08e",
-//   storageBucket: "hermes-9f08e.appspot.com",
-//   messagingSenderId: "834436793034",
-//   appId: "1:834436793034:web:a6c5c1df1608e0df626a33",
-//   measurementId: "G-QPQCKTJ9EM"
-// };
-
-// export const app = initializeApp(firebaseConfig);
-// const auth = getAuth(app);
 
 function App() {
 
   const [user, setUser] = useState('');
   const [sidebar, setSidebar] = useState(false);
+  const [filter, setFilter] = useState('');
   
   useEffect(() => {
     const localUser = localStorage.getItem('user');
@@ -48,14 +31,17 @@ function App() {
     } else {
       setUser('user');
     }
-    
   }, [user])
   
-
   const toggleSidebar = () => {
     setSidebar(!sidebar);
   };
+
+  const filterSearch = (filterQuery) => {
+    setFilter(filterQuery);
+  };
   
+  //iconos
   initializeIcons();
 
   return (
@@ -63,14 +49,14 @@ function App() {
       <UserContext.Provider value={[user, setUser]}>
       <Router>
         <Sidebar sidebar={sidebar} toggleSidebar={toggleSidebar} />
-        <Header toggleSidebar={toggleSidebar} />
+        <Header toggleSidebar={toggleSidebar} filterSearch={filterSearch}/>
         <hr className='mt-0 mb-3'/>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
           <Route path="/donar" element={<CreatePost />} />
-          <Route path="/posts" element={<PostsList />} />
+          <Route path="/posts" element={<PostsList key={filter} filterQuery={filter} />} />
           <Route path="/post/:id" element={<PostDetail />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
