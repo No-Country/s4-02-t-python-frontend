@@ -94,7 +94,11 @@ export default function PostDetail() {
           </section>
         </div>
         :
-        <div>Cargando...</div>
+        <div className="d-flex justify-content-center vh-100">
+          <div className="spinner-border text-primary my-auto" role="status">
+            <span className="visually-hidden">Loading...</span>
+          </div>
+        </div>
       }
       
     </main>
