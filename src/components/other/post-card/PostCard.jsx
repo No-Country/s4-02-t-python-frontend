@@ -1,22 +1,29 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import avatarImg from '../../../assets/undraw_profile_pic_re_upir.svg';
 import medicamentoImg from '../../../assets/depositphotos_426142004-stock-illustration-medicines-pills-bottles-sketch-medicine.jpg';
 import { UserContext } from '../../../App';
+import Modal from 'react-bootstrap/Modal';
 
 export default function PostCard(props) {
 
     const [user, setUser] = useContext(UserContext);
+    const [modalShow, setModalShow] = useState(false);
 
     const navigate = useNavigate();
     const goToDetail = () => {
         if(user){
             navigate(`/post/${props.postId}`);
         } else {
-            navigate('/login');
+            setModalShow(true);
         }
         
     }
+
+    const handleModalClose = () => {
+        setModalShow(false);
+        navigate('/login');
+      }
 
   return (
     <div className='card w-75 mx-auto'>
@@ -37,6 +44,16 @@ export default function PostCard(props) {
                 <button className='btn btn-primary text-white' onClick={() => goToDetail()}>Ver en detalle</button>
             </div>
         </section>
+
+        <Modal show={modalShow}>
+            <Modal.Header closeButton>
+                <Modal.Title>Error</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>Debes iniciar sesión para ver una publicación en detalle</Modal.Body>
+                <Modal.Footer>
+                <button className='btn btn-primary text-white' onClick={handleModalClose}>Iniciar sesión</button>
+            </Modal.Footer>
+        </Modal>
     </div>
   )
 }
