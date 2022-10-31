@@ -44,6 +44,7 @@ export default function Header({toggleSidebar, filterSearch}) {
     filterSearch(filter);
   }, [filter, filterSearch])
 
+  const AccountIcon = () => <Icon iconName="Contact" />;
   const NavIcon = () => <Icon iconName="GlobalNavButton" />;
 
   return (
@@ -70,6 +71,7 @@ export default function Header({toggleSidebar, filterSearch}) {
         {user === 'user' ?
           <div className="navbar-nav justify-content-end">
             <NavLink to="/donar" className="btn btn-secondary m-2">Donar</NavLink>
+            <NavLink to="/account" className="btn btn-secondary m-2 border-0"><AccountIcon /></NavLink>
             <button onClick={() => signOut()} className='btn btn-outline-primary border-0 m-2'>Cerrar sesión</button>
           </div>
         :
