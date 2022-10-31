@@ -15,6 +15,7 @@ import PostsList from './components/pages/posts-list/PostsList';
 import Sidebar from './components/other/sidebar/Sidebar';
 
 import { initializeIcons } from '@fluentui/font-icons-mdl2';
+import Account from './components/pages/account/Account';
 
 export const UserContext = React.createContext();
 
@@ -55,6 +56,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/account" element={<Account />} />
           <Route path="/donar" element={<CreatePost />} />
           <Route path="/posts" element={<PostsList key={filter} filterQuery={filter} />} />
           <Route path="/post/:id" element={<PostDetail />} />

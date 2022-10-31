@@ -25,7 +25,7 @@ export default function Sidebar({sidebar, toggleSidebar}) {
             {user ?
               <div className='row'>
                 <NavLink to="/donar" className="btn text-white m-2">Donar</NavLink>
-                <NavLink to="/edit-profile" className="btn text-white m-2">Editar Perfil</NavLink>
+                <NavLink to="/account" className="btn text-white m-2">Editar Perfil</NavLink>
                 <button onClick={() => signOut()} className='btn text-white m-2'>Cerrar sesión</button>
               </div>
             :
