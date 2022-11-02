@@ -1,35 +1,41 @@
 import axios from 'axios';
-import React, { useEffect, useMemo, useState } from 'react'
+import React, { useContext, useEffect, useMemo, useState } from 'react'
 import { useForm } from 'react-hook-form';
 import { BASEURL } from '../../../constants';
 import Modal from 'react-bootstrap/Modal';
+import { useNavigate } from 'react-router-dom';
+import { UserContext } from '../../../App';
+
 
 export default function Account() {
 
     const email = localStorage.getItem('email');
-    const [user, setUser] = useState([]);
+    const [user, setUser] = useContext(UserContext);
+    const [userData, setUserData] = useState([]);
     const [successModalShow, setSuccessModalShow] = useState(false);
     const [errorModalShow, setErrorModalShow] = useState(false);
+    const [deleteModalShow, setDeleteModalShow] = useState(false);
+    const navigate = useNavigate();
 
     useEffect(() => {
         axios.get(BASEURL + `/users`)
             .then(res => {
-                setUser(res.data.find(user => user.email === email));
+                setUserData(res.data.find(user => user.email === email));
             })
             .catch(err => console.log(err))
     }, [email])
     
     const { register, handleSubmit, reset } = useForm({
         defaultValues: useMemo(() => {
-            return user;
-        }, [user])
+            return userData;
+        }, [userData])
     });
     useEffect(() => {
-        reset(user);
-    }, [user, reset]);
+        reset(userData);
+    }, [userData, reset]);
 
     const onSubmit = (data) => {
-        axios.put(BASEURL + `/users/${user._id.$oid}`, {
+        axios.put(BASEURL + `/users/${userData._id.$oid}`, {
             first_name: data.first_name,
             last_name: data.last_name,
             email: data.email,
@@ -45,17 +51,50 @@ export default function Account() {
         }).catch(err => console.log(err));
     }
 
+    const handleModalOpen = () => setDeleteModalShow(true);
+
+    const deleteAccount = () => {
+        axios.delete(BASEURL + `/users/${userData._id.$oid}`)
+            .then(res => console.log(res))
+            .catch(err => console.log(err));
+        localStorage.setItem('user', '');
+        setUser('');
+        navigate('/register');
+    }
+
     const handleModalClose = () => {
         setSuccessModalShow(false);
         setErrorModalShow(false);
+        setDeleteModalShow(false);
     }
 
   return (
     <main className='container'>
         <form className="container mx-auto">
-            <div className="mb-3">
-                <h1>Mi perfil</h1>
+            <div className='container d-flex justify-content-between'>
+                <div className="mb-3">
+                    <h1>Mi perfil</h1>
+                </div>
+                <div className="mb-3">
+                    <button type="button" className="btn btn-danger text-white" onClick={() => handleModalOpen()}>Eliminar cuenta</button>
+                </div>
             </div>
+
+            <Modal show={deleteModalShow} onHide={setDeleteModalShow}>
+                <Modal.Header closeButton>
+                    <Modal.Title>¡Cuidado!</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>Eliminar tu cuenta es una acción que no se puede revertir. ¿Estás seguro?</Modal.Body>
+                <Modal.Footer>
+                    <button className='btn btn-primary text-white' onClick={handleModalClose}>
+                        Cancelar
+                    </button>
+                    <button className='btn btn-danger text-white' onClick={() => deleteAccount()}>
+                        Si, quiero borrar mi cuenta
+                    </button>
+                </Modal.Footer>
+            </Modal>
+
             <div className="mb-3">
                 <label htmlFor="first-name" className="form-label m-0">Nombre(s)</label>
                 <input type="text" id="first-name" className="form-control form-control-sm" required {...register("first_name")}></input>
@@ -103,6 +142,8 @@ export default function Account() {
                 </Modal.Footer>
             </Modal>
         </form>
+
+        
     </main>
   )
 }
