@@ -1,17 +1,16 @@
-// import { async } from '@firebase/util';
 import axios from 'axios';
 import React from 'react';
 import { useState } from 'react';
 import { useEffect } from 'react';
-// import { getDatabase, ref, push, set } from "firebase/database";
 import { useForm } from "react-hook-form";
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 import { BASEURL } from '../../../constants';
-// import { getAuth, onAuthStateChanged } from "firebase/auth";
+import Modal from 'react-bootstrap/Modal';
 
 export default function CreatePostForm() {
   
   const [medicines, setMedicines] = useState([]);
+  const [modalShow, setModalShow] = useState(false);
   // const navigate = useNavigate();
   let medicineName;
 
@@ -25,22 +24,9 @@ export default function CreatePostForm() {
     fetchMedicines();
   }, [])
 
-  // const auth = getAuth();
-  // onAuthStateChanged(auth, (user) => {
-  //   if (user) {
-      // https://firebase.google.com/docs/reference/js/firebase.User
-      // userId = user.uid;
-      // console.log(user.email);
-      // ...
-    // } else {
-      // User is signed out
-      // navigate('/login');
-    // }
-  // });
-
   const { register, handleSubmit } = useForm();
   const onSubmit = (data) => {
-    console.log(data)
+    console.log(data);
 
     // const formData = new FormData();
     // formData.append("image", data.image[0]);
@@ -51,8 +37,8 @@ export default function CreatePostForm() {
     //   console.log(pair[0]+ ', ' + pair[1]); 
     // }
 
-    medicineName = medicines.find(medication => medication._id.$oid === data.name).name;
-    console.log(medicineName);
+    // buscando el nombre correspondiente
+    // medicineName = medicines.find(medication => medication._id.$oid === data.name);
 
     const config = {
       headers:{
@@ -63,8 +49,10 @@ export default function CreatePostForm() {
 
     axios.post(BASEURL + '/post/create_post', {
       publication_type: "donacion de medicamento",
-      image: medicineName,
-      drug_name: medicineName,
+      // image: medicineName.name,
+      // drug_name: medicineName._id.$oid,
+      image: data.name,
+      drug_name: data.name,
       description: data.description,
       presentation: data.presentation,
       meeting_place: data.location,
@@ -72,20 +60,9 @@ export default function CreatePostForm() {
       console.log(res);
     }).catch(err => {
       console.log(err);
+      setModalShow(true);
     })
-    // const db = getDatabase();
-    // const reference = ref(db, 'medicines/' + userId);
     
-    // const postListRef = ref(db, 'medicines');
-    // const newPostRef = push(postListRef);
-    // set(newPostRef, {
-    //   name: data.name,
-    //   gtin: data.gtin,
-    //   date: data.date,
-    //   description: data.description,
-    //   userId: userId
-    // });
-
     // navigate(`/post/${newPostRef.key}`);
     // console.log(newPostRef.key);
     // ref.endAt().limitToLast(1).on('child_added', function(snapshot) {
@@ -93,15 +70,19 @@ export default function CreatePostForm() {
     // });
   };
 
+  const handleModalClose = () => {
+    setModalShow(false)
+  }
+
   return (
-    <form className="container mx-auto">
+    <form className="container mx-auto form-group needs-validation" noValidate>
     <div className="mb-3">
       <h1>Donar un medicamento</h1>
     </div>
     <div className="mb-3">
-      <label htmlFor="product-name" className="form-label m-0">Nombre del medicamento</label>
-      <select name="product-name" id="product-name" className='form-select' {...register("name")}>
-        {medicines.map(medication => <option value={medication._id.$oid} key={medication._id.$oid}>{medication.name}</option>)}
+      <label htmlFor="name" className="form-label m-0">Nombre del medicamento</label>
+      <select name="name" id="name" className='form-select' {...register("name")}>
+        {medicines.map(medication => <option value={medication._id.$oid} key={medication._id.$oid} required>{medication.name}</option>)}
       </select>
     </div>
     {/* <div className="mb-3">
@@ -122,23 +103,36 @@ export default function CreatePostForm() {
     </div> */}
     <div className="mb-3">
       <label htmlFor="presentation" className="form-label m-0">Presentación (ej: Tabletas, comprimidos, pastillas, cápsulas, jarabe)</label>
-      <input type="text" id="presentation" className="form-control form-control-sm" {...register("presentation")}></input>
+      <input type="text" id="presentation" className="form-control form-control-sm" required {...register("presentation")}></input>
+      <div class="valid-feedback">
+        Looks good!
+      </div>
     </div>
     <div className="mb-3">
       <label htmlFor="description" className="form-label m-0">Descripción</label>
-      <input type="text" id="description" className="form-control form-control-sm" {...register("description")}></input>
+      <input type="text" id="description" className="form-control form-control-sm" required {...register("description")}></input>
     </div>
     <div className="mb-3">
       <label htmlFor="location" className="form-label m-0">Ubicación</label>
-      <input type="text" id="location" className="form-control form-control-sm" {...register("location")}></input>
+      <input type="text" id="location" className="form-control form-control-sm" required {...register("location")}></input>
     </div>
     {/* <div className="mb-3">
       <label htmlFor="attachment" className="form-label m-0">Agregar imagen</label>
       <input type="file" id="attachment" className="form-control form-control-sm" {...register("image")}></input>
     </div> */}
     <div className="mb-3 text-center">
-      <button type="button" className="btn btn-primary text-white" onClick={handleSubmit(onSubmit)}>Publicar</button>
+      <button type="submit" className="btn btn-primary text-white" onClick={handleSubmit(onSubmit)}>Publicar</button>
     </div>
+
+    <Modal show={modalShow}>
+        <Modal.Header closeButton>
+          <Modal.Title>Error</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>Ocurrió un error inesperado: '500 (INTERNAL SERVER ERROR)'</Modal.Body>
+        <Modal.Footer>
+          <button className='btn btn-primary text-white' onClick={handleModalClose}>Cerrar</button>
+        </Modal.Footer>
+      </Modal>
   </form>
   )
 }

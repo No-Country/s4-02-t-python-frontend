@@ -7,8 +7,11 @@ import { Icon } from '@fluentui/react/lib/Icon';
 
 import './header.scss';
 import { useState } from 'react';
+import { useEffect } from 'react';
+import axios from 'axios';
+import { BASEURL } from '../../../constants';
 
-export default function Header({toggleSidebar}) {
+export default function Header({toggleSidebar, filterSearch}) {
 
   const [user, setUser] = useContext(UserContext);
   const [filter, setFilter] = useState('');
@@ -16,14 +19,14 @@ export default function Header({toggleSidebar}) {
   const navigate = useNavigate();
 
   function signOut () {
-    // axios.get(BASEURL + '/users/logout')
-    // .then(res => {
-    //   console.log(res);
-    // }).catch(err => {
-    //   console.log(err);
-    // });
-    setUser('');
+    axios.get(BASEURL + '/users/logout')
+    .then(res => {
+      // console.log(res.data.message);
+    }).catch(err => {
+      console.log(err);
+    });
     localStorage.setItem('user', '');
+    setUser('');
     navigate('/login');
   };
 
@@ -35,9 +38,13 @@ export default function Header({toggleSidebar}) {
 
   const handleChange = (e) => {
     setFilter(e.target.value);
-    localStorage.setItem('filter', filter);
   }
 
+  useEffect(() => {
+    filterSearch(filter);
+  }, [filter, filterSearch])
+
+  const AccountIcon = () => <Icon iconName="Contact" />;
   const NavIcon = () => <Icon iconName="GlobalNavButton" />;
 
   return (
@@ -64,6 +71,7 @@ export default function Header({toggleSidebar}) {
         {user === 'user' ?
           <div className="navbar-nav justify-content-end">
             <NavLink to="/donar" className="btn btn-secondary m-2">Donar</NavLink>
+            <NavLink to="/account" className="btn btn-secondary m-2 border-0"><AccountIcon /></NavLink>
             <button onClick={() => signOut()} className='btn btn-outline-primary border-0 m-2'>Cerrar sesión</button>
           </div>
         :

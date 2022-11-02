@@ -11,26 +11,22 @@ import axios from 'axios';
 export default function LoginForm() {
 
   const [user, setUser] = useContext(UserContext);
-  // const [email, setEmail] = useState('');
-  // const [password, setPassword] = useState('');
   const [modalShow, setModalShow] = useState(false);
 
   const navigate = useNavigate();
 
-  // const auth = getAuth();
-
   const { register, handleSubmit } = useForm();
   const onSubmit = (data) => {
-    // console.log(data);
-
 
     axios.post(BASEURL + '/users/login', {
       email: data.email,
       password: data.password,
     }).then(res => {
       if (res.data.message === 'User loging successfull...') {
-        setUser(user => !user);
+        // console.log(res);
         localStorage.setItem('user', 'user');
+        localStorage.setItem('email', data.email);
+        setUser('user');
         navigate('/posts');
       } else if (res.data.message === 'Invalid crendentials') {
         setModalShow(true);
@@ -41,33 +37,6 @@ export default function LoginForm() {
       console.log(err);
     });
   }
-  
-  // function signIn() {
-    // signInWithEmailAndPassword(auth, email, password)
-    //   .then((userCredential) => {
-    //     // Signed in
-    //     const user = userCredential.user;
-    //     console.log(user, user.city);
-
-    //     setUser(user => !user);
-    //     navigate('/donar');
-    //   })
-    //   .catch((error) => {
-    //     const errorCode = error.code;
-    //     const errorMessage = error.message;
-    //     console.log(errorCode);
-    //     console.log(errorMessage);
-    //     setModalShow(true);
-    //   });
-  // }
-
-  // const handleEmail = (e) => {
-  //   setEmail(e.target.value);
-  // }
-
-  // const handlePassword = (e) => {
-  //   setPassword(e.target.value);
-  // }
 
   const handleModalClose = () => {
     setModalShow(false)
