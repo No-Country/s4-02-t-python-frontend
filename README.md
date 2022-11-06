@@ -1,3 +1,23 @@
+# s4-02-t-python
+# Servicio online que permite donar medicamentos
+
+<p align="left">
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/2300px-React-icon.svg.png"  width=10% height=10%>
+<img src="https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png"  width=10% height=10%>
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Bootstrap_logo.svg/512px-Bootstrap_logo.svg.png"  width=10% height=10%>
+</p>
+
+## Colaboradores:
+- Jose Morales (Full-stack)
+- Armando Buendía (Full-Stack)
+- Juan Bautista Iglesias (Frontend Developer)
+- Angelo Montero (QA-tester)
+
+Visitanos
+https://s4-02-t-python-frontend-n2k5b3mav-s4-02-t-python-frontend.vercel.app/
+
+-----------------------------------------------INSTRUCCIONES DE INSTALACION-----------------------------------------------
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
