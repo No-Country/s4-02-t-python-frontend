@@ -27,7 +27,7 @@ function App() {
   
   useEffect(() => {
     const localUser = localStorage.getItem('user');
-    if (localUser === '') {
+    if (localUser === null) {
       setUser('');
     } else {
       setUser('user');
